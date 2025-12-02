@@ -53,7 +53,7 @@ echo "💉 Injecting QEMU-Guest-Agent..."
 # Install and enable service to ensure connectivity
 virt-customize -a $IMAGE_FILENAME --install qemu-guest-agent --run-command 'systemctl enable qemu-guest-agent' > /dev/null 2>&1
 echo "🔨 Creating VM..."
-qm create $TEMPLATE_ID --name "$TEMPLATE_NAME" --memory 2048 --net0 virtio,bridge=vmbr0
+qm create $TEMPLATE_ID --name "$TEMPLATE_NAME" --memory 2048 --net0 virtio,bridge=vmbr0,cpu=host
 echo "💾 Importing disk to '$TARGET_STORAGE'..."
 # Capture exact disk path regardless of storage type (local, lvm, zfs, etc.)
 IMPORTED_DISK=$(qm importdisk $TEMPLATE_ID $IMAGE_FILENAME $TARGET_STORAGE --format qcow2 | tail -n 1 | awk '{print $NF}' | sed "s/'//g")
@@ -65,6 +65,7 @@ qm set $TEMPLATE_ID --ide2 $TARGET_STORAGE:cloudinit
 qm set $TEMPLATE_ID --boot c --bootdisk scsi0
 qm set $TEMPLATE_ID --serial0 socket --vga serial0
 qm set $TEMPLATE_ID --agent enabled=1
+qm set $TEMPLATE_ID --cpu host
 echo "📦 Converting to Template..."
 qm template $TEMPLATE_ID
 rm -f $IMAGE_FILENAME
