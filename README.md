@@ -27,4 +27,4 @@ You can run **Easy-Init** directly from your Proxmox shell without cloning the r
 
 ### Syntax
 ```bash
-bash <(curl -s [https://raw.githubusercontent.com/TheHecateII/Easy-Init/main/build_template.sh](https://raw.githubusercontent.com/TheHecateII/Easy-Init/main/build_template.sh)) [VERSION] [STORAGE]
+bash <(curl -s https://raw.githubusercontent.com/TheHecateII/Easy-Init/main/easy-init.sh) [VERSION] [STORAGE]
