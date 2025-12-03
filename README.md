@@ -6,7 +6,7 @@
 
 **Easy-Init** is a robust automation script designed to generate ready-to-use **Debian Cloud-Init templates** on Proxmox VE.
 
-The script automates the entire workflow: downloading the official cloud image, injecting the QEMU Guest Agent (critical for Ansible provisioning), resizing, and configuring the hardware optimized for cloud environments.
+The script automates the entire workflow: downloading the official cloud image, injecting the QEMU Guest Agent, resizing, and configuring the hardware optimized for cloud environments.
 
 ## 🚀 Features
 
